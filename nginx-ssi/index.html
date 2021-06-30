@@ -1,0 +1,25 @@
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Hello</title>
+    <style>
+        div[id^='module'] {
+            color: #333;
+            padding: 1rem;
+            border: 1px solid royalblue;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Server Side Composition</h1>
+
+    <!--# include file="./common.html" -->
+
+    Current module:
+    <!--# echo var="PAGE" -->
+    <!--# include file="./$PAGE.html" -->
+</body>
+
+</html>

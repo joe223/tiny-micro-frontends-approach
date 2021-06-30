@@ -1,4 +1,4 @@
-import { log } from "./utils.js"
+import { log, error } from "./utils.js"
 
 const snapShots = new WeakMap()
 
@@ -53,7 +53,7 @@ export function createContext(external = {}, app) {
     if (app.enableSnapshot) {
         snapShots.set(app, globalCtx)
     }
-    
+
     return globalCtx
 }
 
@@ -84,6 +84,6 @@ export function runScript(code, ctx) {
             }`
         )(ctx, ctx.window)
     } catch (e) {
-        log(e);
+        error(e);
     }
 }

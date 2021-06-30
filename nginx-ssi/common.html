@@ -1,0 +1,28 @@
+<div id="module-common">
+    <input v-model="message" placeholder="edit me" />
+    <p>Message is: {{ message }}</p>
+
+    <ul>
+        <li>
+            <a href="./module-a">module a</a>
+        </li>
+        <li>
+            <a href="./module-b">module b</a>
+        </li>
+    </ul>
+</div>
+
+<script src="https://unpkg.com/vue@next"></script>
+<script type="text/javascript">
+    window.defaultCount = 100
+</script>
+
+<script type="text/javascript">
+    Vue.createApp({
+        data() {
+            return {
+                message: ''
+            }
+        }
+    }).mount('#module-common')
+</script>

@@ -10,7 +10,7 @@ export function defineContainer (app) {
     
                 app.shadowDOM = shadowDOM
 
-                app.onContainerCreated ?.(app)
+                app.onContainerCreated?.(app)
             }
         }
         customElements.define(app.name, CustomDOM)

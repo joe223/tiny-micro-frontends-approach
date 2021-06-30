@@ -1,6 +1,6 @@
 import { defineContainer, createContent } from "./dom.js";
 import { parseEntry } from "./loadResource.js";
-import { log } from "./utils.js";
+import { log, error } from "./utils.js";
 import { runApp } from "./vm.js";
 
 const apps = []
@@ -47,6 +47,7 @@ export function createApp (config) {
         },
         onContainerCreated: (app) => {
             app.shadowDOM.appendChild(app.content)
+            log(`${app.name} mounted`)
         }
     }
 }
@@ -56,13 +57,16 @@ export async function loadApp (app) {
         return
     }
     defineContainer(app)
-
-    app.resources = app.resources || await parseEntry(app.entry)
+    
+    app.resources = app.resources?.resolved 
+        ? app.resources
+        : await parseEntry(app.entry)
     app.content = createContent(app)
     document.body.querySelector(app.container).appendChild(document.createElement(app.name))
     app.state = APP_STATE.LOADED
 
     runApp(app)
+    
 }
 
 export async function unloadApp (app) {

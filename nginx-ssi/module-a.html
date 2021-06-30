@@ -1,0 +1,20 @@
+<div id="module-a">
+      Vue.js Counter: {{ counter }}
+</div>
+<script src="https://unpkg.com/vue@next"></script>
+<script type="text/javascript">
+const Counter = {
+      data() {
+            return {
+                  counter: window.defaultCount || 0
+            }
+      },
+      mounted() {
+            setInterval(() => {
+                  this.counter++
+            }, 1000)
+      }
+}
+
+Vue.createApp(Counter).mount('#module-a')
+</script>
