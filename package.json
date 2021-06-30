@@ -1,0 +1,23 @@
+{
+  "name": "tiny-micro-frontends-approach",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server ./www -p 8888 & http-server ./service -p 8082 --cors",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joe223/tiny-micro-frontends-approach.git"
+  },
+  "author": "joe223",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/joe223/tiny-micro-frontends-approach/issues"
+  },
+  "homepage": "https://github.com/joe223/tiny-micro-frontends-approach#readme",
+  "dependencies": {
+    "tslib": "^2.3.0"
+  }
+}

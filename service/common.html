@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul {
+            font-size: 20px;
+        }
+        * {
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        a {
+            color: white;
+        }
+
+        a:hover {
+            color: teal;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li><a href="/#">root path</a></li>
+        <li><a href="/#service-a">module-a</a></li>
+        <li><a href="/#service-b">module-b</a></li>
+
+        <button onclick="alert(_app)">alert button a</button>
+    </ul>    
+    <script src="./common.js"></script>
+
+    <script type="text/javascript">
+        window._app = 'common'
+        console.log('Service common:', window, this);
+    </script>
+</body>
+</html>

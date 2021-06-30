@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        #container {
+            height: 100%;
+            text-align: center;
+            font-family: "Avenir", Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            color: #61dafb;
+            padding-top: 60px;
+            background-color: #282c34;
+        }
+
+        ul,
+        input {
+            display: block;
+            margin: 1rem auto;
+            width: 200px;
+        }       
+
+        button {
+            padding: 0.5rem;
+            border: none;
+            background: white;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ii0xMS41IC0xMC4yMzE3NCAyMyAyMC40NjM0OCI+CiAgPHRpdGxlPlJlYWN0IExvZ288L3RpdGxlPgogIDxjaXJjbGUgY3g9IjAiIGN5PSIwIiByPSIyLjA1IiBmaWxsPSIjNjFkYWZiIi8+CiAgPGcgc3Ryb2tlPSIjNjFkYWZiIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIi8+CiAgICA8ZWxsaXBzZSByeD0iMTEiIHJ5PSI0LjIiIHRyYW5zZm9ybT0icm90YXRlKDYwKSIvPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIiB0cmFuc2Zvcm09InJvdGF0ZSgxMjApIi8+CiAgPC9nPgo8L3N2Zz4K"
+            alt="" width="200">
+        <h1>Hello React, this is service b</h1>
+        <div id="service-b"></div>
+    </div>
+
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+    <script type="text/javascript">
+        class TodoApp extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { items: [
+                    ...window.snapshot?.items || []
+                ], text: '' };
+                this.handleChange = this.handleChange.bind(this);
+                this.handleSubmit = this.handleSubmit.bind(this);
+            }
+
+            render() {
+                return React.createElement(
+                    "div",
+                    null,
+                    React.createElement(
+                        "h3",
+                        null,
+                        "TODO LIST"
+                    ),
+                    React.createElement(TodoList, { items: this.state.items }),
+                    React.createElement(
+                        "form",
+                        { onSubmit: this.handleSubmit },
+                        React.createElement(
+                            "label",
+                            { htmlFor: "new-todo" },
+                            "What needs to be done?"
+                        ),
+                        React.createElement("input", {
+                            id: "new-todo",
+                            onChange: this.handleChange,
+                            value: this.state.text
+                        }),
+                        React.createElement(
+                            "button",
+                            null,
+                            "Add #",
+                            this.state.items.length + 1
+                        )
+                    )
+                );
+            }
+
+            handleChange(e) {
+                this.setState({ text: e.target.value });
+            }
+
+            handleSubmit(e) {
+                e.preventDefault();
+                if (this.state.text.length === 0) {
+                    return;
+                }
+                const newItem = {
+                    text: this.state.text,
+                    id: Date.now()
+                };
+                this.setState(state => ({
+                    items: state.items.concat(newItem),
+                    text: ''
+                }), () => {
+                    window.snapshot = {
+                        items: this.state.items
+                    }
+                });
+            }
+        }
+
+        class TodoList extends React.Component {
+            render() {
+                return React.createElement(
+                    "ul",
+                    null,
+                    this.props.items.map(item => React.createElement(
+                        "li",
+                        { key: item.id },
+                        item.text
+                    ))
+                );
+            }
+        }
+
+        ReactDOM.render(React.createElement(TodoApp, { name: "React" }), window.__IS_SANDBOX
+            ? _Barfish.app.shadowDOM.querySelector('#service-b')
+            : document.getElementById('service-b'));
+    </script>
+</body>
+
+</html>
