@@ -12,7 +12,7 @@ export function request(url, option) {
     })
 }
 
-export async function parseEntry (url) {
+export async function parseEntry (url, enableCache) {
     try {
         const res = await request(url)
         const parser = new DOMParser()
@@ -38,6 +38,7 @@ export async function parseEntry (url) {
         const html = dom.body.innerHTML
 
         return {
+            cached: enableCache ? true : false,
             script,
             html,
             style
@@ -45,7 +46,6 @@ export async function parseEntry (url) {
     } catch (e) {
         error(e);
         return {
-            failed: true,
             html: '<div style="color: #555;font-size: 2rem;padding: 1rem;text-align: center;">Oops :(</div>'
         }
     }

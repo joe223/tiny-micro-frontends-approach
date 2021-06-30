@@ -58,9 +58,9 @@ export async function loadApp (app) {
     }
     defineContainer(app)
     
-    app.resources = app.resources?.resolved 
+    app.resources = app.resources?.cached 
         ? app.resources
-        : await parseEntry(app.entry)
+        : await parseEntry(app.entry, app.enableCache)
     app.content = createContent(app)
     document.body.querySelector(app.container).appendChild(document.createElement(app.name))
     app.state = APP_STATE.LOADED
