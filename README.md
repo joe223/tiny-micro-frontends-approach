@@ -4,6 +4,7 @@
 - Isolation of CSS and JavaScript
 - Snapshot
 - Multiple instance
+- Resource cache
 
 ```shell
 npm install && npm start
